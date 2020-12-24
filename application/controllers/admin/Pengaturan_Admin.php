@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pengaturan_Admin extends CI_Controller{
     public function index(){
-        $this->load->view('admin/pengaturan');
+        $this->load->view('admin/pengaturan_admin');
     }
     public function ambildata($type){
     	if($type == 1){
@@ -33,6 +33,30 @@ class Pengaturan_Admin extends CI_Controller{
     	}
     	$this->session->set_flashdata('msg', 'Berhasil Ganti Password');
     	$ar = $this->db->update($table, $arr, $where);
-    	redirect(base_url('pengaturan_admin'));
-    }
+    	redirect(base_url('admin/pengaturan_admin'));
+	}
+	public function aktivasi(){
+        $this->load->view('admin/aktivasi');
+        
+	}
+	public function aktivasi_akun(){
+		$nomor = $this->input->post('identitas');
+		$type = $this->input->post('type');
+		if($type == 1){
+    		$table = 'tb_mhs';
+    		$arr   = ['status' => 1];
+    		$where = ['nim_mhs' => $nomor];
+    	}else if($type == 2){
+    		$table = 'tb_dosenwali';
+    		$arr   = ['status' => 1];
+    		$where = ['nip_doswal' => $nomor];
+    	}else{
+    		$table = 'tb_kaprodi';
+    		$arr   = ['status' => 1];
+    		$where = ['nip_kaprodi' => $nomor];
+    	}
+		$this->db->update($table,  $arr, $where);
+		$this->session->set_flashdata('msg', 'Berhasil Aktivasi Akun');
+		redirect(base_url('admin/pengaturan_admin/aktivasi'));
+	}
 }

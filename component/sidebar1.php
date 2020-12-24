@@ -22,11 +22,11 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon ti-archive"></i>Riwayat Konsultasi</a>
                     </li>
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+                        <a href="<?= base_url('admin/pengaturan') ?>" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
                             <i class="menu-icon fa fa-cogs"></i>Pengaturan</a>
                             <ul class="sub-menu children dropdown-menu">
-                                <li><i class="fa fa-users"></i><a href="">Mahasiswa</a></li>
-                                <li><i class="fa fa-user"></i><a href="">Dosen Wali</a></li>
+                                <li><i class="fa fa-lock"></i><a href="<?= base_url('admin/pengaturan_admin') ?>">Reset Password</a></li>
+                                <li><i class="fa fa-tasks"></i><a href="<?= base_url('admin/pengaturan_admin/aktivasi') ?>">Activation</a></li>
                             </ul>  
                     </li>
                 </li>
@@ -34,4 +34,3 @@
         </div><!-- /.navbar-collapse -->
     </nav>
 </aside>
-<!-- /#left-panel -->
