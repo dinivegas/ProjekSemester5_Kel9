@@ -60,60 +60,96 @@
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
-                <!-- ============================================================== -->
-                <!-- Start Page Content -->
-                <!-- ============================================================== -->
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
+                
+               <div class="row">
+               <div class="col-md-12">
+                    <table class="table">
+                        <tr>
+
+                        <td style="width:180px"><b>Nama</b></td><td><span class="form-control"><?= $this->session->userdata('userdata')['nama_mhs']?></span></td>
+                            
+                        </tr>
+                        <tr>
+                            <td style="width:180px"><b>Ketua Program Studi</b></td><td><span class="form-control"><?= (isset($data['nama_kaprodi']) ? $data['nama_kaprodi'] : '-')?></span></td>
+                        </tr>
+                        <tr>
+                            <td style="width:180px"><b>Pusat Karir</b></td><td><span class="form-control"><?= (isset($data['nama_pusatkarir']) ? $data['nama_pusatkarir'] : '-')?></span></td>
+                        </tr>
+                        <tr>
+                            <td style="width:180px"><b>Dosen Wali</b></td><td><span class="form-control"><?= (isset($data['nama_doswal']) ? $data['nama_doswal'] : '-')?></span></td>
+                        </tr>
+                        <tr>
+                            <td style="width:180px"><b>Tanggal Chat</b></td><td><span class="form-control"><?= (isset($data['tgl_chat']) ? $data['tgl_chat'] : '-')?></span></td>
+                        </tr>
+                        <tr>
+                            <td style="width:180px"><b>Topik</b></td><td>
+                                <!--  -->
+                                <form action="<?= base_url('user/konsultasi/simpan_topik') ?>" method="POST">
+                                <!--  -->
+                                <?php 
+                                    if(isset($data['status_chat'])){
+                                        if($data['status_chat'] == 5){
+                                ?>
+                                <div class="input-group">
+                                    <input type="text" placeholder="Masukkan Topik Pembicaraan Anda" name="topik" class="form-control">
+                                    <input class="btn btn-outline-primary" type="submit" id="inputGroupFileAddon04" value="YA"></input>
+                                </div>
+                                <?php }else{
+                                    ?>
+                                    <?= isset($data['topik_chat']) ? $data['topik_chat'] : ''?>
+                                    <?php 
+                                }}else{ ?>
+                                    
+                                    <div class="input-group">
+                                        <input type="text" placeholder="Masukkan Topik Pembicaraan Anda" name="topik" class="form-control">
+                                        <input class="btn btn-outline-primary" type="submit" id="inputGroupFileAddon04" value="YA"></input>
+                                    </div>
+                                <?php } ?>
+                                <!--  -->
+                                </form>
+                                <!--  -->
+                            </td>
+                        </tr>
+                    </table>
+                    <!--  -->
+                    <?php 
+                    if(isset($data['status_chat'])){
+                        if($data['status_chat'] != 1){
+                    ?>
+                    <div class="alert alert-info">
+                        Masalah anda tidak bisa diselesaikan dengan <b>dosen wali</b>. akan dilanjutkan dengan <b>kaprodi</b>
+                    </div>
+                    <?php }} ?>
+                    <!--  -->
+                </div>
+                   <div class="col-md-12">
+                        <div id="pesan">
+                        
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" name="id_chat" id="id_chat" class="form-control"  readonly style="font-weight:bold" placeholder="yourname" value="<?= (isset($data['id_chat']) ? $data['id_chat'] : '')?>">
+                            </div>   
+                            
+                            <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Chat Option</h4>
                                 <div class="chat-box scrollable" style="height:475px;">
                                     <!--chat Row -->
                                     <ul class="chat-list">
                                         <!--chat Row -->
-                                        <li class="chat-item">
-                                            <div class="chat-img"><img src="<?php echo base_url()?>user/assets/images/users/1.jpg" alt="user"></div>
+                                        <?php foreach($chat as $list){
+                                            
+                                        ?> 
+                                        <!-- -->
+                                        <li class="<?= ($list->level == 1 && $list->id_mhs == $this->session->userdata('userdata')['id_mhs']  ? 'odd' : '') ?> chat-item">
+                                        <!--  -->
                                             <div class="chat-content">
-                                                <h6 class="font-medium">James Anderson</h6>
-                                                <div class="box bg-light-info">Lorem Ipsum is simply dummy text of the printing &amp; type setting industry.</div>
-                                            </div>
-                                            <div class="chat-time">10:56 am</div>
-                                        </li>
-                                        <!--chat Row -->
-                                        <li class="chat-item">
-                                            <div class="chat-img"><img src="<?php echo base_url()?>user/assets/images/users/2.jpg" alt="user"></div>
-                                            <div class="chat-content">
-                                                <h6 class="font-medium">Bianca Doe</h6>
-                                                <div class="box bg-light-info">It’s Great opportunity to work.</div>
-                                            </div>
-                                            <div class="chat-time">10:57 am</div>
-                                        </li>
-                                        <!--chat Row -->
-                                        <li class="odd chat-item">
-                                            <div class="chat-content">
-                                                <div class="box bg-light-inverse">I would love to join the team.</div>
+                                                <div class="box bg-light-info"><?= $list->isi_chat ?></div>
                                                 <br>
                                             </div>
+                                            <div class="chat-time"><?= $list->tanggal_chat ?></div>
                                         </li>
-                                        <!--chat Row -->
-                                        <li class="odd chat-item">
-                                            <div class="chat-content">
-                                                <div class="box bg-light-inverse">Whats budget of the new project.</div>
-                                                <br>
-                                            </div>
-                                            <div class="chat-time">10:59 am</div>
-                                        </li>
-                                        <!--chat Row -->
-                                        <li class="chat-item">
-                                            <div class="chat-img"><img src="<?php echo base_url()?>user/assets/images/users/3.jpg" alt="user"></div>
-                                            <div class="chat-content">
-                                                <h6 class="font-medium">Angelina Rhodes</h6>
-                                                <div class="box bg-light-info">Well we have good budget for the project</div>
-                                            </div>
-                                            <div class="chat-time">11:00 am</div>
-                                        </li>
-                                        <!--chat Row -->
+                                        <?php } ?>
                                     </ul>
                                 </div>
                             </div>
@@ -121,29 +157,17 @@
                                 <div class="row">
                                     <div class="col-9">
                                         <div class="input-field m-t-0 m-b-0">
-                                            <textarea id="textarea1" placeholder="Type and enter" class="form-control border-0"></textarea>
+                                            <textarea id="message" name="message" placeholder="Type and enter" class="form-control border-0"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-3">
-                                        <a class="btn-circle btn-lg btn-cyan float-right text-white" href="javascript:void(0)"><i class="fas fa-paper-plane"></i></a>
-                                        <button type="button" class="btn btn-secondary btn-sm">Draft</button>
-                                        <button type="button" class="btn btn-danger btn-sm">Reset</button>
+                                        <a class="btn-circle btn-lg btn-cyan float-right text-white" onclick="store();"><i class="fas fa-paper-plane"></i></a>
+                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End PAge Content -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- Right sidebar -->
-                <!-- ============================================================== -->
-                <!-- .right-sidebar -->
-                <!-- ============================================================== -->
-                <!-- End Right sidebar -->
-                <!-- ============================================================== -->
+                    </div>     
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
@@ -179,6 +203,73 @@
     <script src="<?php echo base_url()?>user/dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="<?php echo base_url()?>user/dist/js/custom.min.js"></script>
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+
+  <script>
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('a07f7d661e8689f142b8', {
+      cluster: 'ap1',
+      encrypted: true
+    });
+
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function(data) {
+    
+     AddData(data);
+    });
+// 
+    function AddData(data) {
+        
+        
+        console.log(data);
+        data.reverse();
+        result(data)
+    }
+    function result(data){
+        console.log(data);
+        var str = '';
+        for(var z in data){
+            
+            str += '<li class="'+ (data[z].level == 1 ? 'odd' : '') +' chat-item">'
+                    +'<div class="chat-content">'
+                    +'<div class="box bg-light-inverse">'+ data[ z ].isi_chat  +'</div>'
+                    +'<br>'
+                    +'</div>'
+                    +'<div class="chat-time">'+ data[ z ].tanggal_chat  +'</div>'
+                    +'</li>';
+        }
+        
+        
+        
+        $('.chat-list').html(str);
+    }
+// 
+  </script>
+
+    <script>
+        function store() {
+            var value = {
+                id_chat: $('#id_chat').val(),
+                message: $('#message').val()
+            }
+            
+            $.ajax({
+                url: '<?=site_url();?>/user/konsultasi/store',
+                type: 'POST',
+                data: value,
+                dataType: 'JSON',
+                success: function(data){ 
+                    window.location.reload();
+            },
+            error: function(data){ 
+                window.location.reload();
+            },
+            });
+        }
+    </script>
 </body>
 
 </html>

@@ -9,19 +9,14 @@
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="<?php echo base_url('user/dashboard')?>">
                         <!-- Logo icon -->
-                        <b class="logo-icon p-l-10">
-                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                            <!-- Dark Logo icon -->
-                            <img src="<?php echo base_url()?>user/assets/images/logo-icon.png" alt="homepage" class="light-logo" />
-                           
-                        </b>
+                        
                         <!--End Logo icon -->
                          <!-- Logo text -->
-                        <span class="logo-text">
+                        <span class="logo-text text-center" style="padding:16px">
                              <!-- dark Logo text -->
-                             <img src="<?php echo base_url()?>user/assets/images/logo-text.png" alt="homepage" class="light-logo" />
+                             <img src="<?php echo base_url()?>user/assets/images/polije.png" style="width:40%" alt="homepage" class="light-logo" />
                             
                         </span>
                     </a>
