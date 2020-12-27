@@ -60,6 +60,7 @@
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
+<<<<<<< Updated upstream
                 
                <div class="row">
                <div class="col-md-12">
@@ -167,6 +168,28 @@
                                 </div>
                             </div>
                         </div>
+=======
+               <div class="row">
+                   <div class="col-md-6 m-auto">
+                        <div id="pesan">
+                        <?php foreach($chat as $list){
+                            echo "<p>
+                            <span><b>$list->nama</b></span> -
+                            <span>$list->message</span>
+                            </p>";
+                        }
+                        ?> 
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="name" id="name" class="form-control" readonly style="font-weight:bold" placeholder="yourname" value="<?= $this->session->userdata('userdata')['nama_mhs']?>">
+                            </div>   
+                            <div class="form-group">
+                            <input type="text" name="message" id="message" class="form-control" placeholder="yourmessage">
+                            </div>
+                            <div class="form-group">
+                            <input type="button" value="send"  class="btn btn-primary btn-block" onclick="store();">
+                            </div>
+>>>>>>> Stashed changes
                     </div>     
             </div>
             <!-- ============================================================== -->
@@ -217,6 +240,7 @@
 
     var channel = pusher.subscribe('my-channel');
     channel.bind('my-event', function(data) {
+<<<<<<< Updated upstream
     
      AddData(data);
     });
@@ -247,19 +271,41 @@
         $('.chat-list').html(str);
     }
 // 
+=======
+     //alert(data.message);
+     AddData(data);
+    });
+
+    function AddData(data) {
+        var str = '';
+        for(var z in data){
+            str += '<p><span><b>'+data[ z ].nama+'</b></span> - <span>'+data[ z ].message+'</span></p>';
+        }
+        $('#pesan').html(str);
+    }
+
+>>>>>>> Stashed changes
   </script>
 
     <script>
         function store() {
             var value = {
+<<<<<<< Updated upstream
                 id_chat: $('#id_chat').val(),
                 message: $('#message').val()
             }
             
+=======
+                nama: $('#name').val(),
+                message: $('#message').val()
+            }
+            // console.log(value);
+>>>>>>> Stashed changes
             $.ajax({
                 url: '<?=site_url();?>/user/konsultasi/store',
                 type: 'POST',
                 data: value,
+<<<<<<< Updated upstream
                 dataType: 'JSON',
                 success: function(data){ 
                     window.location.reload();
@@ -267,6 +313,10 @@
             error: function(data){ 
                 window.location.reload();
             },
+=======
+                dataType: 'JSON'
+
+>>>>>>> Stashed changes
             });
         }
     </script>
