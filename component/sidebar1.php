@@ -26,7 +26,8 @@
                             <i class="menu-icon fa fa-cogs"></i>Pengaturan</a>
                             <ul class="sub-menu children dropdown-menu">
                                 <li><i class="fa fa-lock"></i><a href="<?= base_url('admin/pengaturan_admin') ?>">Reset Password</a></li>
-                                <li><i class="fa fa-tasks"></i><a href="<?= base_url('admin/pengaturan_admin/aktivasi') ?>">Activation</a></li>
+                                <li><i class="fa fa-tasks"></i><a href="<?= base_url('admin/pengaturan_admin/aktivasi') ?>">Aktifkan</a></li>
+                                <li><i class="fa fa-tasks"></i><a href="<?= base_url('admin/pengaturan_admin/nonaktifkan') ?>">Nonaktifkan</a></li>
                             </ul>  
                     </li>
                 </li>

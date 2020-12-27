@@ -23,7 +23,7 @@
 
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 
-</head>  
+</head>
 <body>
     <?php include('component/sidebar1.php') ?>
 
@@ -38,9 +38,9 @@
                     <div class="col-sm-8">
                         <div class="page-header ">
                             <div class="page-title">
-                                <h1>Reset Password</h1>
+                                <h1>Nonaktifkasi</h1>
                                 <div class="container mt-3">
-                                    <form method="POST" action="<?= base_url('admin/pengaturan_admin/reset_password') ?>">
+                                    <form method="POST" action="<?= base_url('admin/pengaturan_admin/nonaktifkan_akun') ?>">
                                     <?php if($this->session->flashdata('msg')){ ?>
                                     <div class="alert alert-info">
                                         <?php echo $this->session->flashdata('msg'); ?>
@@ -81,7 +81,7 @@
                                     <div class="form-group row mb-0">
                                         <div class="col-md-6 offset-md-4">
                                             <button type="submit" class="btn btn-primary">
-                                                Reset
+                                                Nonaktifkan
                                             </button>
                                         </div>
                                     </div>
@@ -133,7 +133,7 @@
                     console.log(res);
                     var obj = JSON.parse(res);
                     // console.log(obj[0]);
-                    var result = "<option>Pilh Nip</option>";
+                    var result = "<option>Pilh "+( val == "1" ? "NIM" : "NIP")+"</option>";
                     for (var i = 0; i < obj.length ; i++) {
                         result+="<option value='"+ obj[i].nomor +"'>"+ obj[i].nomor +"</option>";
                     }
