@@ -38,9 +38,9 @@
                     <div class="col-sm-8">
                         <div class="page-header ">
                             <div class="page-title">
-                                <h1>Reset Password</h1>
+                                <h1>Aktifkan</h1>
                                 <div class="container mt-3">
-                                    <form method="POST" action="<?= base_url('pengaturan_admin/reset_password') ?>">
+                                    <form method="POST" action="<?= base_url('admin/pengaturan_admin/aktivasi_akun') ?>">
                                     <?php if($this->session->flashdata('msg')){ ?>
                                     <div class="alert alert-info">
                                         <?php echo $this->session->flashdata('msg'); ?>
@@ -59,10 +59,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="password" class="col-md-4 col-form-label text-md-right">Nama / Nip</label>
+                                            <label for="password" class="col-md-4 col-form-label text-md-right">NIP/NIM</label>
                                             <div class="col-md-6">
                                                 <select name="identitas" id="identitas" class="js-example-basic-single form-control">
-                                                    <option>Pilh Nip</option>
+                                                    <option>Pilih</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -81,7 +81,7 @@
                                     <div class="form-group row mb-0">
                                         <div class="col-md-6 offset-md-4">
                                             <button type="submit" class="btn btn-primary">
-                                                Reset
+                                                Aktivasi
                                             </button>
                                         </div>
                                     </div>
@@ -127,13 +127,13 @@
         $("#type").change(function(){
             var val = $(this).val();
             $.ajax({
-                url: base_url+"pengaturan_admin/ambildata/"+val,
+                url: base_url+"admin/pengaturan_admin/ambildata/"+val,
                 type: 'GET',
                 success: function(res) {
                     console.log(res);
                     var obj = JSON.parse(res);
                     // console.log(obj[0]);
-                    var result = "<option>Pilh Nip</option>";
+                    var result = "<option>Pilh "+( val == "1" ? "NIM" : "NIP")+"</option>";
                     for (var i = 0; i < obj.length ; i++) {
                         result+="<option value='"+ obj[i].nomor +"'>"+ obj[i].nomor +"</option>";
                     }

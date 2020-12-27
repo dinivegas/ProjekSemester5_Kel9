@@ -59,4 +59,28 @@ class Pengaturan_Admin extends CI_Controller{
 		$this->session->set_flashdata('msg', 'Berhasil Aktivasi Akun');
 		redirect(base_url('admin/pengaturan_admin/aktivasi'));
 	}
+    public function nonaktifkan(){
+        $this->load->view('admin/nonaktifkan');
+        
+    }
+    public function nonaktifkan_akun(){
+        $nomor = $this->input->post('identitas');
+        $type = $this->input->post('type');
+        if($type == 1){
+            $table = 'tb_mhs';
+            $arr   = ['status' => 0];
+            $where = ['nim_mhs' => $nomor];
+        }else if($type == 2){
+            $table = 'tb_dosenwali';
+            $arr   = ['status' => 0];
+            $where = ['nip_doswal' => $nomor];
+        }else{
+            $table = 'tb_kaprodi';
+            $arr   = ['status' => 0 ];
+            $where = ['nip_kaprodi' => $nomor];
+        }
+        $this->db->update($table,  $arr, $where);
+        $this->session->set_flashdata('msg', 'Berhasil Nonaktifkan Akun');
+        redirect(base_url('admin/pengaturan_admin/nonaktifkan'));
+    }
 }
